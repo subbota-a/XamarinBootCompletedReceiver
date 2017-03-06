@@ -13,7 +13,7 @@ using Android.Util;
 
 namespace XamarinBootCompletedTest
 {
-    [BroadcastReceiver(Enabled = true, Exported = true)]
+    [BroadcastReceiver(Enabled = true, Exported = true, Name = "my.xamarin.bootcompletedreceiver")]
     [IntentFilter(
         new[] { Android.Content.Intent.ActionBootCompleted, "android.intent.action.QUICKBOOT_POWERON" }
         )]
@@ -23,7 +23,7 @@ namespace XamarinBootCompletedTest
         {
             Log.Debug("BootCompletedReceiver", "OnReceive");
             var pref = context.GetSharedPreferences(MainActivity.Key, Android.Content.FileCreationMode.Private);
-            pref.Edit().PutString(DateTime.Now.ToString(), MainActivity.Key).Commit();
+            pref.Edit().PutString(MainActivity.Key, DateTime.Now.ToString()).Commit();
         }
     }
 }
